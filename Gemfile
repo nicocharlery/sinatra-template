@@ -10,9 +10,7 @@ gem 'sinatra'
 
 
 group :development, :test do
-  gem "sandi_meter"
-end
-
-group :test do
+  gem 'rack-test'
   gem 'rspec'
+  gem "sandi_meter"
 end
