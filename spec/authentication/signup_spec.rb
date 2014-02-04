@@ -3,7 +3,7 @@ require 'spec_helper'
 describe FiveWhys::SignupController do
 
   before(:each) do
-    Database.session['users'].find.remove_all
+    Settings.database_session['users'].find.remove_all
   end
 
   context 'when no params' do
@@ -13,8 +13,12 @@ describe FiveWhys::SignupController do
     end
   end
 
-  context 'when good params sent' do
-    before(:each) { post '/signup/username/nicolas/password/toto' }
+  context 'when good params are sent,' do
+    let(:now) { Time.new(2014,1,2) }
+    before(:each) do
+      Time.stub(:now).and_return(now)
+      post '/signup/username/nicolas/password/toto'
+    end
 
     it 'respond with 200' do
       expect(last_response.status).to eq 200
@@ -29,6 +33,11 @@ describe FiveWhys::SignupController do
     it 'ensure only one user is saved' do
       users = FiveWhys::UserRepository.all
       expect(users.length).to eq 1
+    end
+
+    it 'user created with c_at timestamp' do
+      user = FiveWhys::UserRepository.all.first
+      expect(user.created_at).to eq now
     end
   end
 
