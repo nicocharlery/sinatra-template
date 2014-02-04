@@ -2,13 +2,8 @@ source 'https://rubygems.org'
 
 gem 'rake'
 gem 'sinatra'
-
-gem 'mongoid'
-gem 'mongoid-paperclip', :require => 'mongoid_paperclip'
-gem 'mongoid_slug'
 gem 'moped'
-gem 'fog'
-
+gem 'activesupport', '4.0.0'
 
 
 group :development, :test do

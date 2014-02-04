@@ -1,9 +1,4 @@
-require 'sinatra/base'
+require 'sinatra'
+require File.expand_path '../config/boot.rb', __FILE__
 
-file = File.expand_path '../config/boot.rb', __FILE__
-require file
-
-run Rack::URLMap.new({
-  "/" => ApplicationController,
-  "/login" => LoginController
-})
+run FiveWhys

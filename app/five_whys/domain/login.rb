@@ -1,4 +1,4 @@
-class Signuper
+class Login
   def initialize(listener, params)
     @listener = listener
   end
